@@ -1,0 +1,1320 @@
+{
+	"info": {
+		"_postman_id": "1268e2d1-2008-4692-b89f-78ed2c090e08",
+		"name": "Eventify Backend",
+		"description": "This Postman workspace contains the complete collection of RESTful API endpoints for the **Eventify** backend. Eventify is a comprehensive event management system built with Node.js, designed to facilitate event discovery, booking, and management for Attendees, Organizers, and Super Admins.\n\nThis collection is organized to reflect the core functionalities and user roles within the system, providing a seamless interface for development, testing, and integration.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39540413",
+		"_collection_link": "https://team33-4385.postman.co/workspace/Eventify~6f34754e-512c-4f67-9fcd-5eed3595414e/collection/39540413-1268e2d1-2008-4692-b89f-78ed2c090e08?action=share&source=collection_link&creator=39540413"
+	},
+	"item": [
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/health"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the api for the Server health👇👇\n\n1. Server Health"
+		},
+		{
+			"name": "Super Admin",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/D:/Eventify/eventify-super-admin/src/assets/logo/logo.png"
+								},
+								{
+									"key": "userName",
+									"value": "SuperAdmin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "eventify.eventapp05@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Superadmin@1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/super-admin/signup-super-admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"if (response && response.token) {\r",
+									"    const token = response.token;\r",
+									"    pm.environment.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to environment:\", token);\r",
+									"    pm.globals.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to globals:\", token);\r",
+									"    \r",
+									"    // Store adminId from the superAdmin object\r",
+									"    if (response.superAdmin && response.superAdmin.id) {\r",
+									"        const adminId = response.superAdmin.id;\r",
+									"        pm.environment.set(\"adminId\", adminId);\r",
+									"        pm.globals.set(\"adminId\", adminId);\r",
+									"        console.log(\"Admin ID saved:\", adminId);\r",
+									"    } else {\r",
+									"        console.error(\"No adminId found in response\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"No token found in response\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eventify.eventapp05@gmail.com\",\r\n    \"password\": \"Superadmin@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/signin-super-admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/get-super-admin-by-id/{{adminId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/logout-super-admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eventify.eventapp05@gmail.com\",\r\n    \"role\": \"SUPERADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"Superadmin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/reset-password/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Reset Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/verify-reset-token/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"action\": \"PUBLISH\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/event/update-event-status/{{eventId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentStatus\": \"PAID\"\r\n    // \"bookingStatus\": \"CONFIRMED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/ticket/update-booking-status/6912e8b079007b771e48e048"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/ticket/get-all-bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/user/get-all-users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Organizers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/organizer/get-all-organizers"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the apis for the Super Admin👇👇\n\n1. Signup\n    \n2. Signin\n    \n3. Get Super Admin By Id\n    \n4. Logout\n    \n5. Forgot Password\n    \n6. Reset Password\n    \n7. Verify Reset Token\n    \n8. Update Event Status\n    \n9. Update Booking Status\n    \n10. Get All Bookings"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/zabid/Downloads/vinland_saga.jpg"
+								},
+								{
+									"key": "userName",
+									"value": "Zain-Ul-Abideen",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "zabideen639@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Z@in1234",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "03090207411",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "House#280, Street#02, Shamsher Town Sargodha",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/user/signup-user"
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"if (response && response.token) {\r",
+									"    const token = response.token;\r",
+									"    pm.environment.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to environment:\", token);\r",
+									"    pm.globals.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to globals:\", token);\r",
+									"    \r",
+									"    // Store userId from the User object\r",
+									"    if (response.user && response.user.id) {\r",
+									"        const userId = response.user.id;\r",
+									"        pm.environment.set(\"userId\", userId);\r",
+									"        pm.globals.set(\"userId\", userId);\r",
+									"        console.log(\"User ID saved:\", userId);\r",
+									"    } else {\r",
+									"        console.error(\"No userId found in response\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"No token found in response\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"zabideen639@gmail.com\",\r\n    \"password\": \"Z@in1234\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/signin-user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/user/get-user-by-id/{{userId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/logout-super-admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eventify.eventapp05@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"Superadmin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/reset-password/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Reset Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/verify-reset-token/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the apis for the User👇👇\n\n1. Signup\n    \n2. Signin\n    \n3. Get User By Id\n    \n4. Logout\n    \n5. Forgot Password\n    \n6. Reset Password\n    \n7. Verify Reset Token"
+		},
+		{
+			"name": "Organizer",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userName",
+									"value": "Organizer",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "muhammadzainulabideen292@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Organizer@1234",
+									"type": "text"
+								},
+								{
+									"key": "organizerProfile[services][0]",
+									"value": " Catering",
+									"type": "text"
+								},
+								{
+									"key": "organizerProfile[services][1]",
+									"value": " Decoration",
+									"type": "text"
+								},
+								{
+									"key": "organizerProfile[services][2]",
+									"value": " Photography",
+									"type": "text"
+								},
+								{
+									"key": "organizerProfile[bio]",
+									"value": " Experienced wedding and corporate event planner.",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/zabid/Downloads/vinland_saga.jpg"
+								},
+								{
+									"key": "organizerProfile[availability][0][date]",
+									"value": "2025-11-15T09:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "organizerProfile[availability][0][isAvailable]",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/organizer/signup-organizer"
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"if (response && response.token) {\r",
+									"    const token = response.token;\r",
+									"    pm.environment.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to environment:\", token);\r",
+									"    pm.globals.set(\"token\", token);\r",
+									"    console.log(\"JWT saved to globals:\", token);\r",
+									"    \r",
+									"    // Store organizerId from the organizer object\r",
+									"    if (response.organizer && response.organizer.id) {\r",
+									"        const organizerId = response.organizer.id;\r",
+									"        pm.environment.set(\"organizerId\", organizerId);\r",
+									"        pm.globals.set(\"organizerId\", organizerId);\r",
+									"        console.log(\"organizer ID saved:\", organizerId);\r",
+									"    } else {\r",
+									"        console.error(\"No organizerId found in response\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"No token found in response\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"muhammadzainulabideen292@gmail.com\",\r\n    \"password\": \"Organizer@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/organizer/signin-organizer"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organizer By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/organizer/get-organizer-by-id/{{organizerId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/super-admin/logout-super-admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"muhammadzainulabideen292@gmail.com\",\r\n    \"role\": \"ORGANIZER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/organizer/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"Superadmin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/reset-password/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Reset Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/super-admin/verify-reset-token/c505a06397e08136c9df9fb4c1ea32edc825a0bf3b3167c56533bee60b994343"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the apis for the Organizer👇👇\n\n1. Signup\n    \n2. Signin\n    \n3. Get Organizer By Id\n    \n4. Logout\n    \n5. Forgot Password\n    \n6. Reset Password\n    \n7. Verify Reset Token"
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Create Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"    // Parse response JSON\r",
+									"    const response = pm.response.json();\r",
+									"\r",
+									"    // Check if event object exists and has _id\r",
+									"    const eventId = response?.event?._id;\r",
+									"\r",
+									"    if (eventId) {\r",
+									"        // Save eventId as a global variable\r",
+									"        pm.globals.set(\"eventId\", eventId);\r",
+									"        console.log(\"✅ Event ID saved as global variable:\", eventId);\r",
+									"    } else {\r",
+									"        console.error(\"❌ eventId not found in response:\", response);\r",
+									"    }\r",
+									"} catch (err) {\r",
+									"    console.error(\"❌ Failed to parse response:\", err);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": " Atif Aslam Concert",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " Live concert of Atif Aslam in Lahore",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": " CONCERT",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": " CITY",
+									"type": "text"
+								},
+								{
+									"key": "venue[name]",
+									"value": " Lahore Arena",
+									"type": "text"
+								},
+								{
+									"key": "venue[address]",
+									"value": " Stadium Road, Lahore",
+									"type": "text"
+								},
+								{
+									"key": "venue[city]",
+									"value": " Lahore",
+									"type": "text"
+								},
+								{
+									"key": "dateTime[start]",
+									"value": " 2025-12-20T12:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "dateTime[end]",
+									"value": " 2025-12-20T23:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[isRegistrationRequired]",
+									"value": " true",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[maxAttendees]",
+									"value": " 5000",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][0][name]",
+									"value": " VIP",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][0][price]",
+									"value": " 15000",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][0][quantity]",
+									"value": " 500",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][1][name]",
+									"value": " General",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][1][price]",
+									"value": " 5000",
+									"type": "text"
+								},
+								{
+									"key": "ticketConfig[ticketTypes][1][quantity]",
+									"value": " 4500",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": " DRAFT",
+									"type": "text"
+								},
+								{
+									"key": "isFeatured",
+									"value": " true",
+									"type": "text"
+								},
+								{
+									"key": "primaryIndex",
+									"value": " 0",
+									"type": "text"
+								},
+								{
+									"key": "captions",
+									"value": " Main stage,Crowd view,Backstage",
+									"type": "text"
+								},
+								{
+									"key": "eventImage",
+									"type": "file",
+									"src": "/C:/Users/zabid/Downloads/5.webp"
+								},
+								{
+									"key": "organizerId",
+									"value": "691719bd3b60a1bf1ee8f716",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/event/create-event"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/event/get-all-events"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Atif Aslam Concert",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " Live concert of Atif Aslam in Lahore",
+									"type": "text"
+								},
+								{
+									"key": "venue[name]",
+									"value": " Lahore Arena",
+									"type": "text"
+								},
+								{
+									"key": "venue[address]",
+									"value": " Stadium Road, Lahore",
+									"type": "text"
+								},
+								{
+									"key": "venue[city]",
+									"value": " Lahore",
+									"type": "text"
+								},
+								{
+									"key": "dateTime[start]",
+									"value": " 2025-10-20T12:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "dateTime[end]",
+									"value": " 2025-10-20T23:00:00.000Z",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{baseUrl}}/event/update-event/{{eventId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/event/delete-event/{{eventId}}"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the apis for the Event👇👇\n\n1. Create Event\n    \n2. Get All Events\n    \n3. Update Event\n    \n4. Delete Event"
+		},
+		{
+			"name": "Ticket Booking",
+			"item": [
+				{
+					"name": "Book Ticket",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\": \"6918226b9362c00d579dc59e\",\r\n    \"ticketType\": \"General\",\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/ticket/book-ticket"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\": \"6911c9428b4ea131a9164296\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/ticket/cancel-booking"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains the apis for the Ticket Booking👇👇\n\n1. Book Ticket\n    \n2. Cancel Booking"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		}
+	]
+}
