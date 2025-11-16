@@ -9,8 +9,8 @@
 
 const CONFIG = {
   /** Base URL for backend API requests */
-  // BACKEND_API_URL: "http://localhost:8000/api",
-  BACKEND_API_URL: "https://eventify-backend-tan.vercel.app/api",
+  BACKEND_API_URL: "http://localhost:8000/api",
+  // BACKEND_API_URL: "https://eventify-backend-tan.vercel.app/api",
 };
 
 export default CONFIG;
