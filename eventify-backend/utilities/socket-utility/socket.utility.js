@@ -16,7 +16,6 @@ const initializeSocket = (server) => {
       methods: ["GET", "POST"],
       credentials: true
     },
-    path: "/socket.io/", // Explicit path for Vercel
     transports: ["websocket", "polling"],
     pingTimeout: 60000,
     pingInterval: 25000,
