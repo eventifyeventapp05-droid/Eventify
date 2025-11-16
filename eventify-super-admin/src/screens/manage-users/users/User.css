@@ -1,0 +1,288 @@
+@import url("../../../styles/global.styles.css");
+
+/* ------------------------------ USERS SCREEN CSS ---------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
+#users .users-container {
+  padding: 28px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+#users .users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+#users .users-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  padding-left: 10px;
+  border-left: 4px solid var(--primary);
+}
+
+#users .loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+/* Enhanced Table Styles */
+#users .table-responsive {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#users .users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  margin: 0;
+}
+
+#users .users-table thead {
+  background-color: var(--dark-red, #992020);
+  color: var(--white);
+}
+
+#users .users-table .table-header-row th {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  position: relative;
+}
+
+#users .users-table .table-header-row th:first-child {
+  border-top-left-radius: 12px;
+}
+
+#users .users-table .table-header-row th:last-child {
+  border-top-right-radius: 12px;
+}
+
+#users .users-table th,
+#users .users-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: left;
+  vertical-align: middle;
+}
+
+#users .users-table tbody tr {
+  background-color: var(--white);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#users .users-table tbody tr:hover {
+  background-color: rgba(153, 32, 32, 0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#users .users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#users .users-table tbody tr:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 20%,
+    rgba(0, 0, 0, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* User Info Styles */
+#users .user-info {
+  align-items: center;
+  gap: 12px;
+}
+
+#users .profile-picture-cell {
+  text-align: center;
+  width: 70px;
+}
+
+#users .user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(153, 32, 32, 0.1);
+  display: block;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+#users .users-table tbody tr:hover .user-img {
+  border-color: rgba(153, 32, 32, 0.3);
+  transform: scale(1.05);
+}
+
+#users .user-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+#users .users-table td {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Actions Column */
+#users .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#users .action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+#users .action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#users .view-detail-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(92, 71, 216, 0.95),
+    rgba(92, 71, 216, 0.8)
+  );
+  color: var(--white);
+}
+
+#users .view-detail-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(92, 71, 216, 1),
+    rgba(92, 71, 216, 0.9)
+  );
+}
+
+/* No Users Found */
+#users .no-users-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 24px;
+  background: linear-gradient(135deg, var(--primary), rgba(153, 32, 32, 0.9));
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(153, 32, 32, 0.15);
+  text-align: center;
+}
+
+#users .no-users-found i {
+  font-size: 48px;
+  color: var(--white);
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+#users .no-users-found p {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #users .users-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #users .table-responsive {
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  #users .users-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  #users .users-table th,
+  #users .users-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  #users .actions {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  #users .action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  #users .user-img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  #users .users-container {
+    padding: 20px 16px;
+  }
+
+  #users .users-title {
+    font-size: 24px;
+  }
+
+  #users .no-users-found {
+    padding: 40px 20px;
+  }
+
+  #users .no-users-found i {
+    font-size: 36px;
+  }
+
+  #users .no-users-found p {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,227 @@
+@import url("../../../styles/global.styles.css");
+
+/* ------------------------------ CREATE EVENT SCREEN CSS --------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
+#create-event {
+  padding: 28px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+#create-event .event-header-container {
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+#create-event .header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 4px solid var(--primary);
+}
+
+#create-event .header-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: "#0000";
+}
+
+/* Form Section */
+/*********************/
+/*********************/
+/*********************/
+#event-form {
+  padding: 14px 40px;
+  background: #fff;
+  border-bottom: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+/* Ticket Section */
+/*********************/
+/*********************/
+/*********************/
+
+.ticket-types-section {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.ticket-row {
+  background: #f8fafc;
+  border-left: 3px solid #9b2c2c;
+  transition: all 0.2s ease;
+}
+
+.ticket-row:hover {
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.ticket-row .input-field {
+  flex: 1;
+  min-width: 100px;
+}
+
+.ticket-row .remove-ticket-btn {
+  color: #dc2626;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.ticket-types-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ticket-types-section::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   MEDIA SECTION STYLES
+   ========================= */
+#create-event #media-section {
+  padding-top: 10px;
+}
+
+#create-event #event-upload-area {
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 36px;
+  text-align: center;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#create-event #event-upload-area:hover {
+  border-color: var(--primary);
+  background: #fef5f5;
+}
+
+#create-event #event-upload-area.has-preview {
+  padding: 16px;
+  background: #fff;
+}
+
+#create-event #event-upload-placeholder {
+  color: #475569;
+}
+
+#create-event .event-upload-icon {
+  font-size: 2.2rem;
+  color: #9b2c2c;
+  margin-bottom: 8px;
+}
+
+#create-event #event-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+#create-event .event-preview-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+}
+
+#create-event .event-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#create-event .event-preview-item:hover {
+  transform: scale(1.02);
+  border-color: var(--primary);
+}
+
+#create-event .event-preview-item.primary {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+#create-event .event-primary-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+#create-event .event-image-index {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Checkbox styling */
+#create-event .event-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+
+#create-event .event-checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+#create-event .event-checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #94a3b8;
+  border-radius: 4px;
+  position: relative;
+}
+
+#create-event .event-checkbox-label input:checked + .event-checkmark {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+#create-event .event-checkbox-label input:checked + .event-checkmark::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

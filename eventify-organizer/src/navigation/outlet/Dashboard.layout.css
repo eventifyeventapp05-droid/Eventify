@@ -1,0 +1,142 @@
+/**
+ * Enhanced Dashboard Layout Styles
+ *
+ * This stylesheet defines the layout structure for the dashboard, 
+ * leveraging the global design tokens (colors, spacing, shadows, etc.) 
+ * from global.styles.css to maintain consistency across the app.
+ */
+
+/**
+ * Enhanced Dashboard Layout Styles
+ * No scrolling on x or y axis
+ */
+
+@import url("../../styles/global.styles.css");
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  background-color: var(--white);
+  overflow: hidden; /* Prevent any scrolling */
+}
+
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden; /* Prevent container scrolling */
+}
+
+/* Sidebar styles */
+.sidebar-container {
+  position: fixed;
+  top: var(--header-height, 64px);
+  left: 0;
+  height: calc(100vh - var(--header-height, 64px));
+  background-color: var(--white);
+  box-shadow: var(--shadow-md);
+  width: var(--sidebar-width, 250px);
+  z-index: 100;
+  padding: var(--spacing-md);
+  border-right: 1px solid var(--gray-200);
+  transition: transform 0.3s ease, width 0.3s ease;
+  overflow: hidden; /* Prevent sidebar scrolling */
+}
+
+/* Mobile sidebar behavior */
+.sidebar-mobile {
+  transform: translateX(-100%);
+  width: 280px;
+}
+
+.sidebar-mobile.sidebar-open {
+  transform: translateX(0);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: var(--header-height, 64px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+/* Content area - NO SCROLLING */
+.content {
+  flex: 1;
+  margin-left: var(--sidebar-width, 250px);
+  padding: var(--spacing-lg);
+  padding-top: calc(var(--header-height, 64px) + var(--spacing-lg));
+  position: relative;
+  z-index: 1;
+  background-color: var(--gray-50);
+  height: calc(100vh - var(--header-height, 64px));
+  transition: margin-left 0.3s ease, padding 0.3s ease;
+  overflow: hidden; /* Prevent content area scrolling */
+}
+
+/* Ensure all children of content don't cause scrolling */
+.content > * {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 1023px) {
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: var(--spacing-md);
+    padding-top: calc(var(--header-height, 64px) + var(--spacing-md));
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .content {
+    padding: var(--spacing-sm);
+    padding-top: calc(var(--header-height, 64px) + var(--spacing-sm));
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-container,
+  .content {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .sidebar-container {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 0;
+    background-color: white;
+    height: auto;
+    overflow: visible;
+  }
+  
+  .dashboard-layout {
+    height: auto;
+    overflow: visible;
+  }
+}

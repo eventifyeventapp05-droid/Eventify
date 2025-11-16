@@ -1,0 +1,196 @@
+/**
+ * Header Component Styles
+ * 
+ * Comprehensive styling for the main navigation header featuring:
+ * - Fixed positioning with glassmorphism effect
+ * - Smooth animations and transitions
+ * - Responsive profile dropdown menu
+ * - Professional typography and spacing
+ * - Accessibility-friendly interactions
+ */
+
+@import url("../../styles/global.styles.css");
+
+/**
+ * Main header container with fixed positioning and glassmorphism effect
+ */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  animation: slideDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(84, 64, 140, 0.1);
+}
+
+/**
+ * Header container for layout management
+ */
+#header .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/**
+ * Logo section with clickable area and hover effects
+ */
+#header .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--primary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#header .logo:hover {
+  transform: scale(1.02);
+}
+
+#header .logo-img {
+  width: 250px;
+  height: 45px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+#header .logo:hover .logo-img {
+  transform: rotate(5deg);
+}
+
+#header .logo-text {
+  font-family: var(--font-family);
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/**
+ * Navigation section styling
+ */
+#header .nav {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * Profile section with user information and controls
+ */
+#header .profile-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  position: relative;
+}
+
+#header .welcome-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  display: none;
+}
+
+/**
+ * Profile image
+ */
+#header .profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+/**
+ * Logout button styling
+ */
+#header .logout-btn {
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+/**
+ * Keyframe animations
+ */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/**
+ * Responsive design for tablets and mobile devices
+ */
+@media (min-width: 768px) {
+  #header .welcome-text {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  #header {
+    padding: var(--spacing-md);
+  }
+
+  #header .logo-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #header .logo-text {
+    display: none;
+  }
+
+  #header .profile-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  #header .welcome-text {
+    font-size: var(--font-size-xs);
+  }
+
+  #header .logout-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}

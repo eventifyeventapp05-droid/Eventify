@@ -1,0 +1,319 @@
+@import url("../../../styles/global.styles.css");
+
+/* ------------------------------ ORGANIZERS SCREEN CSS ----------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
+#organizers .organizers-container {
+  padding: 28px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+#organizers .organizers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+#organizers .organizers-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  padding-left: 10px;
+  border-left: 4px solid var(--primary);
+}
+
+#organizers .loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+/* Enhanced Table Styles */
+#organizers .table-responsive {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#organizers .organizers-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  margin: 0;
+}
+
+#organizers .organizers-table thead {
+  background-color: var(--dark-red, #992020);
+  color: var(--white);
+}
+
+#organizers .organizers-table .table-header-row th {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  position: relative;
+}
+
+#organizers .organizers-table .table-header-row th:first-child {
+  border-top-left-radius: 12px;
+}
+
+#organizers .organizers-table .table-header-row th:last-child {
+  border-top-right-radius: 12px;
+}
+
+#organizers .organizers-table th,
+#organizers .organizers-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: left;
+  vertical-align: middle;
+}
+
+#organizers .organizers-table tbody tr {
+  background-color: var(--white);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#organizers .organizers-table tbody tr:hover {
+  background-color: rgba(153, 32, 32, 0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#organizers .organizers-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#organizers .organizers-table tbody tr:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 20%,
+    rgba(0, 0, 0, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* Organizer Info Styles */
+#organizers .organizer-info {
+  align-items: center;
+  gap: 12px;
+}
+
+#organizers .profile-picture-cell {
+  text-align: center;
+  width: 70px;
+}
+
+#organizers .organizer-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(153, 32, 32, 0.1);
+  display: block;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+#organizers .organizers-table tbody tr:hover .organizer-img {
+  border-color: rgba(153, 32, 32, 0.3);
+  transform: scale(1.05);
+}
+
+#organizers .organizer-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+#organizers .organizer-email {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+#organizers .organizer-services {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 250px;
+}
+
+#organizers .organizers-table td {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Actions Column */
+#organizers .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#organizers .action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+#organizers .action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#organizers .view-detail-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(92, 71, 216, 0.95),
+    rgba(92, 71, 216, 0.8)
+  );
+  color: var(--white);
+}
+
+#organizers .view-detail-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(92, 71, 216, 1),
+    rgba(92, 71, 216, 0.9)
+  );
+}
+
+/* No Organizers Found */
+#organizers .no-organizers-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 24px;
+  background: linear-gradient(135deg, var(--primary), rgba(153, 32, 32, 0.9));
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(153, 32, 32, 0.15);
+  text-align: center;
+}
+
+#organizers .no-organizers-found i {
+  font-size: 48px;
+  color: var(--white);
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+#organizers .no-organizers-found p {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #organizers .organizers-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #organizers .table-responsive {
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  #organizers .organizers-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  #organizers .organizers-table th,
+  #organizers .organizers-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  #organizers .actions {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  #organizers .action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  #organizers .organizer-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  #organizers .organizer-email,
+  #organizers .organizer-services {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  #organizers .organizers-container {
+    padding: 20px 16px;
+  }
+
+  #organizers .organizers-title {
+    font-size: 24px;
+  }
+
+  #organizers .no-organizers-found {
+    padding: 40px 20px;
+  }
+
+  #organizers .no-organizers-found i {
+    font-size: 36px;
+  }
+
+  #organizers .no-organizers-found p {
+    font-size: 16px;
+  }
+
+  #organizers .organizer-email,
+  #organizers .organizer-services {
+    max-width: 120px;
+    font-size: 12px;
+  }
+}

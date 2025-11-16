@@ -1,0 +1,225 @@
+@import url("../../../styles/global.styles.css");
+
+#signup-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), rgba(0, 0, 0, 0.7));
+  backdrop-filter: blur(10px);
+}
+
+#signup-screen .card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: var(--spacing-lg);
+  animation: slideIn 0.5s ease-in-out;
+}
+
+#signup-screen .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signup-screen .logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+  gap: 10px;
+}
+
+#signup-screen .logo-container .logo {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+#signup-screen .form-container {
+  width: 100%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#signup-screen .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+#signup-screen .form-grid > *:nth-last-child(2),
+#signup-screen .form-grid > *:last-child {
+  grid-column: 1 / -1;
+}
+
+#signup-screen .img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+#signup-screen .image-placeholder-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#signup-screen .image-placeholder-container:hover {
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+#signup-screen .image-placeholder-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#signup-screen .btn-container {
+  margin-top: var(--spacing-lg);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+#signup-screen .signin-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#signup-screen .signin-label {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#signup-screen .signin-label:hover {
+  color: var(--secondary);
+}
+
+/* Services Styles */
+#signup-screen .services-container {
+  grid-column: 1 / -1;
+}
+
+#signup-screen .selected-services {
+  margin-top: 10px;
+}
+
+#signup-screen .selected-services-label {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#signup-screen .service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#signup-screen .service-tag {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.3s ease;
+}
+
+#signup-screen .remove-tag {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--white);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: background 0.3s ease;
+}
+
+#signup-screen .remove-tag:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Input Field Icons */
+#signup-screen .input-icon {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+/* Dropdown Multiple Selection */
+#signup-screen select[multiple] {
+  height: auto;
+  min-height: 100px;
+}
+
+#signup-screen select[multiple] option {
+  padding: 8px 12px;
+  margin: 2px 0;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+#signup-screen select[multiple] option:hover {
+  background: var(--primary-light);
+}
+
+#signup-screen select[multiple] option:checked {
+  background: var(--primary);
+  color: var(--white);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #signup-screen .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #signup-screen .service-tags {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,271 @@
+/**
+ * NotFound Component Styles
+ * 
+ * Comprehensive styling for the 404 error page featuring:
+ * - Animated gradient backgrounds using global color variables
+ * - Floating particle effects
+ * - Smooth transitions and animations
+ * - Responsive design patterns
+ * - Accessibility considerations
+ */
+
+@import url("../../styles/global.styles.css");
+
+/**
+ * Main container styles with animated gradient background
+ * Prevents scrolling by fixing the container to viewport
+ */
+#not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+#not-found-container.visible {
+  opacity: 1;
+}
+
+/**
+ * Particle animation container
+ */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/**
+ * Individual floating particles
+ */
+.floating-particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  backdrop-filter: blur(2px);
+}
+
+/**
+ * Main content card with glassmorphism effect
+ */
+.not-found-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 650px;
+  width: 90%;
+  margin: var(--spacing-xl);
+  position: relative;
+  z-index: 10;
+  animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/**
+ * Error code container with individual digit animation
+ */
+.error-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-lg);
+}
+
+.error-digit {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: var(--font-family);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1),
+    -1px -1px 0 rgba(255, 255, 255, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.error-digit:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.error-digit:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/**
+ * Floating astronaut emoji
+ */
+.floating-astronaut {
+  font-size: 4rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+/**
+ * Main title styling
+ */
+.not-found-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/**
+ * Description text
+ */
+.not-found-description {
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: var(--spacing-xl);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/**
+ * Action buttons container
+ */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+/**
+ * Keyframe animations
+ */
+
+/* Gradient background animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating animation for elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Particle floating animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Slide up animation for content */
+@keyframes slideUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Pulsing animation for error digits */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/**
+ * Responsive design for mobile devices
+ */
+@media (max-width: 768px) {
+  .not-found-content {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+  }
+
+  .error-digit {
+    font-size: 5rem;
+  }
+
+  .floating-astronaut {
+    font-size: 3rem;
+  }
+
+  .not-found-title {
+    font-size: 2rem;
+  }
+
+  .not-found-description {
+    font-size: 1.1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-code-container {
+    gap: var(--spacing-md);
+  }
+
+  .error-digit {
+    font-size: 4rem;
+  }
+
+  .not-found-title {
+    font-size: 1.8rem;
+  }
+
+  .not-found-description {
+    font-size: 1rem;
+  }
+}

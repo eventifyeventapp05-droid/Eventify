@@ -1,0 +1,82 @@
+/**
+ * InputField Stylesheet
+ *
+ * Provides styles for the reusable InputField component.
+ * Supports:
+ * - Standard inputs with floating labels
+ * - Dropdowns (select inputs)
+ * - Multiline textarea fields
+ *
+ * Features:
+ * - Floating label animation when focused or filled
+ * - Consistent styling with global design tokens
+ * - Support for full-width or inline layouts
+ */
+
+@import url("../../styles/global.styles.css");
+
+.custom-input-wrapper {
+  width: 100%;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--gray);
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-base, 1rem);
+  font-family: var(--font-family);
+  outline: none;
+  background: transparent;
+  color: var(--dark);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--primary);
+  font-size: 1.2rem;
+  pointer-events: none;
+  z-index: 2;
+  top: 11px;
+}
+
+.custom-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label {
+  position: absolute;
+  top: 14px;
+  left: 40px;
+  font-size: 0.85rem;
+  color: var(--dark);
+  padding: 0 4px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input-container.has-value .floating-label,
+.input-container:focus-within .floating-label {
+  top: -8px;
+  left: 12px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.input-container .floating-label {
+  z-index: 1;
+}
+
+.input-container.no-float .floating-label {
+  display: none;
+}
