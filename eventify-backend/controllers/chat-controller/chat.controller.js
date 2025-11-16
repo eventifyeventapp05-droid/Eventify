@@ -10,20 +10,20 @@ const Chat = require("../../models/chat-model/chat.model");
 
 const CHAT_EVENTS = {
   // Client to Server events
-  START_CHAT: "start_chat",
-  SEND_MESSAGE: "send_message",
-  GET_CHAT_HISTORY: "get_chat_history",
-  GET_ALL_CHATS: "get_all_chats",
-  DELETE_CHAT: "delete_chat",
+  START_CHAT: "startChat",
+  SEND_MESSAGE: "sendMessage",
+  GET_CHAT_HISTORY: "getChatHistory",
+  GET_ALL_CHATS: "getAllChats",
+  DELETE_CHAT: "deleteChat",
 
   // Server to Client events
-  NEW_CHAT: "new_chat",
-  NEW_MESSAGE: "new_message",
-  CHAT_HISTORY: "chat_history",
-  ALL_CHATS_LIST: "all_chats_list",
-  CHAT_DELETED: "chat_deleted",
-  ERROR: "chat_error",
-  SUCCESS: "chat_success",
+  NEW_CHAT: "newChat",
+  NEW_MESSAGE: "newMessage",
+  CHAT_HISTORY: "chatHistory",
+  ALL_CHATS_LIST: "allChatsList",
+  CHAT_DELETED: "chatDeleted",
+  ERROR: "chatError",
+  SUCCESS: "chatSuccess",
 };
 
 /**
@@ -66,9 +66,6 @@ exports.initializeChatSocket = (io) => {
     console.log(
       `Chat socket connected for user: ${socket.user.id}, role: ${socket.user.role}`
     );
-
-    /**
-    
 
     /**
      * @description Start new chat
@@ -138,7 +135,7 @@ exports.initializeChatSocket = (io) => {
           isActive: true,
         })
           .populate("user", "userName email profileImage")
-          .populate("organizer", "organizerName email profileImage");
+          .populate("organizer", "userName email profileImage");
 
         if (existingChat) {
           console.log("Existing chat found:", existingChat._id);
@@ -183,7 +180,7 @@ exports.initializeChatSocket = (io) => {
         // Populate the chat with user/organizer details
         const populatedChat = await Chat.findById(newChat._id)
           .populate("user", "userName email profileImage")
-          .populate("organizer", "organizerName email profileImage");
+          .populate("organizer", "userName email profileImage");
 
         console.log("New chat created:", populatedChat._id);
 
@@ -360,7 +357,7 @@ exports.initializeChatSocket = (io) => {
 
         const chat = await Chat.findById(chatId)
           .populate("user", "userName email profileImage")
-          .populate("organizer", "organizerName email profileImage");
+          .populate("organizer", "userName email profileImage");
 
         if (!chat) {
           return sendError(
@@ -411,34 +408,37 @@ exports.initializeChatSocket = (io) => {
     });
 
     /**
-     * @description Get all chats for organizer
+     * @description Get all chats
      */
     socket.on(CHAT_EVENTS.GET_ALL_CHATS, async () => {
       try {
-        if (socket.user.role !== "ORGANIZER") {
+        let query = { isActive: true };
+
+        if (socket.user.role === "USER") {
+          query.user = socket.user.id;
+        } else if (socket.user.role === "ORGANIZER") {
+          query.organizer = socket.user.id;
+        } else {
           return sendError(
             socket,
             CHAT_EVENTS.GET_ALL_CHATS,
-            "Only organizers can view all chats"
+            "Only users and organizers can view chats"
           );
         }
 
-        const chats = await Chat.find({
-          organizer: socket.user.id,
-          isActive: true,
-        })
+        const chats = await Chat.find(query)
           .sort({ lastActivity: -1, updatedAt: -1 })
           .populate("user", "userName email profileImage")
-          .populate("organizer", "organizerName email profileImage");
+          .populate("organizer", "userName email profileImage");
 
         socket.emit(CHAT_EVENTS.ALL_CHATS_LIST, {
           success: true,
-          chats: chats,
+          chats,
           total: chats.length,
         });
 
         console.log(
-          `Sent ${chats.length} chats to organizer ${socket.user.id}`
+          `Sent ${chats.length} chats to ${socket.user.role} ${socket.user.id}`
         );
       } catch (error) {
         console.error("GET_ALL_CHATS error:", error);
